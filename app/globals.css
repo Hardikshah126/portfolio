@@ -52,6 +52,11 @@ body {
   outline-offset: 4px;
 }
 
+/* Fields whose container already shows focus */
+[data-no-focus-ring]:focus-visible {
+  outline: none;
+}
+
 @layer components {
   .label-mono {
     font-family: var(--font-mono);

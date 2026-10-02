@@ -45,8 +45,8 @@ function Meta({ delay, className, children }: { delay: number; className?: strin
 
 /**
  * HARDIK set huge, with the surname and role tucked underneath.
- * Rendered twice with identical layout: a solid copy behind the portrait and an
- * outline copy in front of it, so letters the head covers still read.
+ * Rendered twice with identical layout: the giant name shows in the copy behind
+ * the portrait, the surname line in the copy in front of it.
  */
 function NameBlock({ layer, x }: { layer: "back" | "front"; x?: MotionValue<string> }) {
   const front = layer === "front";
@@ -60,7 +60,7 @@ function NameBlock({ layer, x }: { layer: "back" | "front"; x?: MotionValue<stri
           word={profile.firstName}
           delay={0.2}
           className={`text-[29vw] tracking-[-0.02em] text-crimson lg:text-[min(27vw,44svh)] ${
-            front ? "text-outline [-webkit-text-stroke-width:1.5px]" : ""
+            front ? "invisible" : ""
           }`}
         />
         <motion.div
@@ -148,7 +148,7 @@ export function Hero() {
       {/* 3 — portrait, revealed through a rising mask */}
       <motion.div
         style={{ y: s.portraitY }}
-        className="absolute bottom-0 left-1/2 aspect-[1455/1884] h-[min(70svh,140vw)] -translate-x-1/2 sm:h-[62svh] lg:h-[86svh]"
+        className="absolute bottom-0 left-1/2 aspect-[1455/1884] h-[min(70svh,140vw)] -translate-x-1/2 sm:h-[62svh] lg:h-[76svh]"
       >
         <motion.div
           initial={{ clipPath: "inset(100% 0% 0% 0%)", scale: 1.08 }}
@@ -172,7 +172,7 @@ export function Hero() {
 
       {/* 4 — foreground typography layered over the portrait */}
       <motion.div style={{ opacity: s.fade }} className="absolute inset-0 z-20">
-        {/* Outline copy of the name keeps the letters behind the portrait legible */}
+        {/* Foreground copy of the name block: only the surname line is visible, kept in front of the portrait */}
         <NameBlock layer="front" x={s.nameX} />
 
         {/* Tagline over the suit */}

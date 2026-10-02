@@ -3,6 +3,7 @@ import { Anton, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Cursor } from "@/components/ui/Cursor";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { profile } from "@/data/portfolio";
 
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SmoothScroll>
           <ScrollProgress />
           {children}
+          <ChatWidget />
         </SmoothScroll>
         <Cursor />
         <div className="grain" aria-hidden="true" />
