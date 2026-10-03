@@ -78,15 +78,6 @@ export function ChatWidget() {
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
-  // The launcher waits until the visitor scrolls past the hero, keeping the hero CTAs clear.
-  const [pastHero, setPastHero] = useState(false);
-
-  useEffect(() => {
-    const update = () => setPastHero(window.scrollY > window.innerHeight * 0.6);
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -146,7 +137,7 @@ export function ChatWidget() {
   return (
     <>
       <AnimatePresence>
-        {!open && pastHero && (
+        {!open && (
           <motion.button
             key="launcher"
             type="button"
@@ -155,13 +146,13 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, transition: { duration: 0.5, ease } }}
             exit={{ opacity: 0, y: 16, transition: { duration: 0.2 } }}
             aria-label={`Open chat: ask about ${profile.firstName}`}
-            className="label-mono fixed bottom-5 right-5 z-[60] flex items-center gap-3 border border-white/20 bg-ink px-4 py-3.5 text-white shadow-[0_10px_40px_rgba(0,0,0,0.35)] transition-colors hover:bg-crimson md:bottom-8 md:right-8"
+            className="label-mono fixed bottom-5 right-5 z-[60] flex items-center gap-3 border border-white/20 bg-ink px-3.5 py-3.5 text-white shadow-[0_10px_40px_rgba(0,0,0,0.35)] transition-colors hover:bg-crimson sm:px-4 md:bottom-8 md:right-8"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inset-0 animate-ping rounded-full bg-ember/70" />
               <span className="relative h-2 w-2 rounded-full bg-ember" />
             </span>
-            Ask about {profile.firstName}
+            <span className="hidden sm:inline">Ask about {profile.firstName}</span>
             <MessageSquare aria-hidden="true" className="h-3.5 w-3.5" />
           </motion.button>
         )}

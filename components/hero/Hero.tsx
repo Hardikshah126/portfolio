@@ -178,7 +178,7 @@ export function Hero() {
         {/* Tagline over the suit */}
         <motion.div
           style={{ x: s.tagX }}
-          className="absolute bottom-[19svh] left-5 sm:left-10 lg:bottom-[9svh] lg:left-auto lg:right-10 lg:text-right"
+          className="absolute bottom-[19svh] left-5 sm:left-10 lg:bottom-[calc(9svh+1.5rem)] lg:left-auto lg:right-10 lg:text-right"
         >
           <p aria-hidden="true" className="display text-[11.5vw] leading-[0.88] text-ember sm:text-[8vw] lg:text-[min(5.6vw,9svh)] lg:text-crimson">
             {["Engineering", "Intelligent", "Systems"].map((w, i) => (
@@ -221,7 +221,7 @@ export function Hero() {
         {/* 5 — calls to action */}
         <Meta
           delay={1.5}
-          className="absolute inset-x-5 bottom-[5svh] flex items-center justify-between gap-4 sm:inset-x-10 lg:inset-x-auto lg:bottom-[6svh] lg:left-10 lg:justify-start lg:gap-8"
+          className="absolute inset-x-5 bottom-[5svh] flex items-center justify-between gap-4 pr-14 sm:inset-x-10 sm:pr-[16rem] lg:inset-x-auto lg:bottom-[6svh] lg:left-10 lg:justify-start lg:gap-8 lg:pr-0"
         >
           <Magnetic>
             <a
@@ -244,7 +244,8 @@ export function Hero() {
           </Magnetic>
         </Meta>
 
-        <Meta delay={1.7} className="absolute bottom-[4svh] right-10 hidden lg:block">
+        {/* Sits left of the chat launcher, which is pinned to the bottom-right corner */}
+        <Meta delay={1.7} className="absolute bottom-[4svh] right-[19rem] hidden lg:block">
           <a
             href="#about"
             onClick={go("#about")}
